@@ -11,3 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.restaurants-list {
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-gap: 32px;
+  display: grid;
+  padding-top: 16px;
+  padding-bottom: 32px;
+}
+
+.restaurants-header {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  color: white;
+}
+
+.restaurant-bg {
+  background-image: url("https://www.modadenizkulubu.org.tr/upload/orta_HS_7_Copy_1.jpg");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: -24px;
+  bottom: -24px;
+  left: -24px;
+  right: -24px;
+  -webkit-filter: blur(8px) grayscale(50%);
+  z-index: -1;
+}
+
+.title-restaurants {
+  text-align: start!important;
+  margin-bottom: 8px!important;
+}
+
+.restaurants-container-width {
+  margin-left: 10vw!important;
+  margin-right: 10vw!important;
+}
+
+.restaurant-info-grid {
+  grid-template-columns: 1fr 1fr ;
+  display: grid;
+  grid-gap: 16px;
+}
+
+.flex-1 {
+  flex: 1;
+}
