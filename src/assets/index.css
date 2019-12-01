@@ -96,6 +96,14 @@ code {
   flex: 1;
 }
 
+.grid {
+  display: grid;
+}
+
+.grid-2x1 {
+  grid-template-columns: 1fr 1fr;
+}
+
 .menu-section {
   display: -webkit-inline-box;
 }

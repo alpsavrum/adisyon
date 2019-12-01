@@ -10,23 +10,51 @@ const Component = () => {
   const [restaurant, setRestaurant] = useState();
   const [menu, setMenu] = useState();
   const [pool, setPool] = useState();
+  const [offer, setOffer] = useState([]);
+
+  const [budget, setBudget] = useState();
+  const [people, setPeople] = useState();
+
 
   useEffect(()=>{
     post(endpoints.restaurantsDetail, {restaurantId: paramExtractor()}).then(({restaurant, restaurantMenuInfos}) => {
       setRestaurant(restaurant);
       post(endpoints.restaurantsMenu, {
         restaurantId: paramExtractor(),
-        restaurantMenuId: _.find(restaurantMenuInfos, {name: "A LA CARTE"}).id,
+        restaurantMenuId: (_.find(restaurantMenuInfos, {name: "A LA CARTE"}))?_.find(restaurantMenuInfos, {name: "A LA CARTE"}).id:null,
       }).then(({restaurantMenu}) => {
-        setMenu(restaurantMenu.itemCategories);
+        restaurantMenu && setMenu(restaurantMenu.itemCategories);
       })
     });
   }, [])
 
   useEffect(()=>{
-    console.log(poolMenu(menu));
+    setPool(poolMenu(menu));
   }, [menu])
 
+  const buildMenu = () => {
+    let menu = [];
+    let mainCourse = _.groupBy(pool.mainCourse, ({price}) => price < budget / people + 1).true;
+    _.times(people, () => {
+      menu.push(_.sample(mainCourse))
+    });
+    setOffer(menu)
+  }
+
+  const continueMenu = () => {
+    const joint = pool.appetizers.concat(pool.midhot, pool.dessert, pool.salads, pool.starts);
+    console.log(joint);
+    let selectables = _.groupBy(
+      joint,
+      (item) => 
+        item && item.price < (budget - _.sumBy(offer, 
+          (item)=> item && item.price))).true;
+    if(selectables) {
+      let selected = _.sample(selectables)
+      setOffer([...offer, ...[selected]])
+    }
+  }
+  
   return (
     <div style={{position: 'relative'}}>
       <a className="button-back" href="/">
@@ -53,14 +81,28 @@ const Component = () => {
                 <Input
                   placeholder="Bütçenizi Girin."
                   id="standard-adornment-amount"
+                  onChange={e=>setBudget(Number(e.target.value))}
                   startAdornment={<InputAdornment position="start">₺</InputAdornment>}
                 />
                 <Input
                   placeholder="Kişi Sayısını Girin."
                   id="standard-adornment-amount"
+                  onChange={e=>setPeople(Number(e.target.value))}
                   startAdornment={<InputAdornment position="start"><span role="img" aria-label="person">👨</span></InputAdornment>}
                 />
-                <Button variant="contained" color="primary">Menü Oluştur</Button>
+                <div>
+                  {offer.map(({name, price}) => 
+                    <div className="flex">
+                      <p className="fl-1">{name}</p>
+                      <p>{price} TL</p>
+                    </div>
+                  )}
+                  {(offer.length > 0) && <p>Kalan Bütçe: {budget - _.sumBy(offer, ({price})=> price)} TL</p>}
+                </div>
+                <div className="grid grid-2x1">
+                  <Button variant="contained" color="primary" onClick={()=>buildMenu()}>{(offer.length < 1)?`Menü Oluştur`:`Yeniden Başla`}</Button>
+                  <Button variant="contained" disabled={offer.length < 1 || (budget - _.sumBy(offer, ({price})=> price) < 1)} color="primary" onClick={()=>continueMenu()}>Doldur</Button>
+                </div>
               </Paper>
             </div>
             <Typography variant="h4" className="title-restaurants">Menü</Typography>        
@@ -69,7 +111,7 @@ const Component = () => {
       }
       <ScrollContainer horizontal className="scroll-container restaurants-container-width">
         <section className="menu-section">
-          { menu &&
+          { menu ?
             menu.map((segment, index) => 
               <ul className="menu-segment" key={segment.name+index}>
                 <Typography variant="h5">
@@ -86,7 +128,7 @@ const Component = () => {
                   </li>
                 )}
               </ul>
-            )}
+            ) : <Typography variant="h5" className="title-restaurants">Yok ki.</Typography> }
         </section>
       </ScrollContainer>
     </div>
