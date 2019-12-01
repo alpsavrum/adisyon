@@ -10,13 +10,13 @@ const endpoints = {
 const post = (endpoint, form = null, header = null) => {
   return fetch(endpoints.domain + endpoint, {
     method: 'post',
-    body:    JSON.stringify(form),
+    mode: 'cors',
+    body: JSON.stringify(form),
     headers: {
+      'Access-Control-Allow-Origin':'*',
       "X-api-token": "q2KVBxYyy",
       "X-guest-token": "bcdcf7d0-2d8b-42a3-9eab-02f52011b662",
       "X-platform": "android",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"   
     },
   }).then(res => res.json());
 }
