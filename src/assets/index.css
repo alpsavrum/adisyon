@@ -12,6 +12,41 @@ code {
     monospace;
 }
 
+.logo {
+  width: 500px;
+}
+
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+  grid-gap: 16px;
+}
+
+.m-32-t {
+  margin-top: 32px;
+}
+
+.row3x2 {
+  grid-template-columns: 2fr 2fr;
+}
+
+.fl-1 { flex: 1; }
+.fl-2 { flex: 2; }
+.fl-3 { flex: 3; }
+
+.no-margin {
+  margin: 0!important;
+}
+
+.menu-paper {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+}
+
 .restaurants-list {
   grid-template-columns: 1fr 1fr 1fr ;
   grid-gap: 32px;
@@ -36,12 +71,13 @@ code {
   bottom: -24px;
   left: -24px;
   right: -24px;
-  -webkit-filter: blur(8px) grayscale(50%);
+  filter: blur(8px) grayscale(50%);
   z-index: -1;
 }
 
 .title-restaurants {
   text-align: start!important;
+  margin-top: 32px!important;
   margin-bottom: 8px!important;
 }
 
@@ -58,4 +94,73 @@ code {
 
 .flex-1 {
   flex: 1;
+}
+
+.menu-section {
+  display: -webkit-inline-box;
+}
+
+.menu-segment {
+  width: 35vw;
+  padding: 0;
+  margin-right: 64px;
+}
+
+.button-back {
+  position: fixed!important;
+  top: 16px;
+  left: 16px;
+  width: 48px;
+  height: 48px;
+  color: #3f51b5;
+  font-size: 32pt;
+  font-weight: bold;
+  border-radius: 50%;
+  border: 2px solid #3f51b5;
+  z-index: 16;
+}
+
+.button-back-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-51%, -66%);
+  -webkit-text-stroke-width: 2px;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    width: 50%;
+  }
+  .title-restaurants {
+    text-align: center!important;
+  }
+  .row3x2 {
+    grid-template-columns: 1fr;
+  }
+  .center-mobile {
+    text-align: center;
+  }
+  .menu-segment {
+    width: 60vw;
+    margin-right: 32px;
+  }
+  .restaurants-list {
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+    padding-top: 16px;
+    padding-bottom: 32px;
+  }
+  .button-back {
+    position: absolute!important;
+    top: 16px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+    color: white;
+    font-size: 32pt;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 2px solid white
+  }
 }
