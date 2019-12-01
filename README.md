@@ -1,21 +1,18 @@
-┌▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀┐
-┼ TÜRKİYE Açık Kaynak Platformu Hackathon 2019 
-└▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀┘   
+# Adisyon
+## Yemekse derdin, Adisyon önersin!
+Adisyon, #açıkhack hackhatonu süresince, Türkçe dil işleme kapsamında geliştirilmiş bir Türkçe A La Carte menü segmentasyon projesidir.
 
-# ADİSYON'U kullandığınız için teşekkür ederiz.
-## Kullanma talimatları
-- nodejs ile yarn kullanarak kurun.
-- yarn start komutu ile başlatın.
-- İlk olarak uygulamamıza internet üzerinden pc ve mobil platformlarından ulaşabilirsiniz.
-- Karnınızın aç olduğundan emin olun. :)
-- Ana menüden istediğiniz restoranı seçin ve bütçenizi, kişi sayısını açılan pencerede girin.
-- Sizin için özel olarak seçtiğimiz yiyecek ve içecek menüleri ayağınıza gelecek.
-- Eğer menünüzü beğenmezseniz yenileyebilirsiniz.
-- Paranız artar ise sizin isteğinize bağlı olarak menünüze ekstralar ekleyebiliriz. 
-## Takım: Benceolur
-- Alp Savrum
-- Turan Atakan Saadetlioğlu
-- Şaban Ünlü
-- Galip Oktay Şenocak
+## Ekip
+- Takım Lideri & Geliştirici - [Alp Giray Savrum](https://github.com/alpsavrum)
+- Veri İşleme & Algoritma - [Şaban Üslü](https://github.com/Shabbro96)
+- Arayüz ve Ürün Tasarımı - Atakan Saadetlioğlu
+- Runner & Assist - [Galip Oktay Şenocak](https://github.com/Flooize)
 
-Lütfen payşarak destek olun :)
+### Kurulum
+- NodeJS ve Yarn paket yöneticisi gerekmektedir.
+- Proje klasöründe `yarn && yarn start` komutu ile dev-server çalışmaya başlar.
+- CORS hatası alıyorsanız, lütfen Chrome yada Firefox için CORS eklentisi indirin.
+
+### 3. Parti
+- Segmente edilen menüler [Reztoran](https://reztoran.com) firmasının, [API](http://apimobile.reztoran.com/v1) servisi kullanarak geliştirilmiştir.
+- Menüler tamamen Reztoran tarafından sağlanmakta olup, güncelliği Reztoran'ın insiyatifi altındadır.
