@@ -1,7 +1,7 @@
 
 const endpoints = {
   istanbul: "57d5ca1b47dde42bfbdc6a26",
-  domain : "http://apimobile.reztoran.com/",
+  domain : "https://cors-anywhere.herokuapp.com/http://apimobile.reztoran.com/",
   restaurantsDetail : "v1/restaurant/detail",
   restaurantsMenu : "v1/restaurant/menu",
   restaurants : "v1/search/restaurants",
